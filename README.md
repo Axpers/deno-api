@@ -1,4 +1,4 @@
-# Deno api test
+# Deno http server test
 
 ## Installation : 
 - Install Deno (https://deno.land/manual/getting_started/installation)
