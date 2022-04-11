@@ -5,7 +5,6 @@ import {
   created,
   Endpoint,
   IController,
-  ok,
 } from "https://deno.land/x/knight@2.3.0/mod.ts";
 
 import User from "../models/user.ts";
@@ -23,9 +22,9 @@ export default class UserController extends IController {
     created(response, `User ${user.name} was successfully created`);
   }
 
-  @Endpoint("GET", "/test")
-  getUsers({ response }: Context) {
-    const users = this.userService.getUsers();
-    ok(response, users);
-  }
+  // @Endpoint("GET", "/")
+  // getUsers({ response }: Context): void {
+  //   const users = this.userService.getUsers();
+  //   ok(response, users);
+  // }
 }
