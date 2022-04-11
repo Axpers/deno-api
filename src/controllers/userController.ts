@@ -1,11 +1,31 @@
-import { Router } from "https://deno.land/x/oak@v10.5.1/mod.ts";
-import { getUsers } from "../services/userService.ts";
+import {
+  bodyMappingJSON,
+  Context,
+  Controller,
+  created,
+  Endpoint,
+  IController,
+  ok,
+} from "https://deno.land/x/knight@2.3.0/mod.ts";
 
-const userRouter = new Router();
+import User from "../models/user.ts";
+import UserService from "../services/userService.ts";
 
-userRouter.get("/", (ctx) => {
-  ctx.response.body = "Ok";
-});
-userRouter.get("/users", getUsers);
+@Controller("/users")
+export default class UserController extends IController {
+  private userService = UserService.instance();
 
-export default userRouter;
+  @Endpoint("POST", "/add")
+  async addUser({ request, response }: Context): Promise<void> {
+    const user = await bodyMappingJSON(request, User);
+
+    this.userService.addUser(user);
+    created(response, `User ${user.name} was successfully created`);
+  }
+
+  @Endpoint("GET", "/test")
+  getUsers({ response }: Context) {
+    const users = this.userService.getUsers();
+    ok(response, users);
+  }
+}

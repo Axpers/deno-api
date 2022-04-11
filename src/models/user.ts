@@ -1,4 +1,9 @@
-export interface User {
+export default class User {
   id: number;
-  username: string;
+  name: string;
+
+  constructor(id: number, name: string) {
+    this.id = id;
+    this.name = name;
+  }
 }

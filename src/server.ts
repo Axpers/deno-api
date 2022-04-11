@@ -1,16 +1,6 @@
-import { Application } from "https://deno.land/x/oak@v4.0.0/mod.ts";
-import userRouter from "./controllers/userController.ts";
+import { Knight } from "https://deno.land/x/knight/mod.ts";
 
-const PORT = 8000;
-const HOST = "localhost";
+const app = await Knight.build();
 
-const app = new Application();
-
-app.use(userRouter.routes());
-app.use(userRouter.allowedMethods());
-
-const HOST_PORT = `${HOST}:${PORT}`;
-
-console.log(`Listen on ${HOST_PORT}`);
-
-app.listen(HOST_PORT);
+console.log("Server ready on http://localhost:8000");
+await app.listen({ port: 8000 });

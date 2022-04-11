@@ -1,22 +1,29 @@
-import { User } from "../models/user.ts";
+import User from "../models/user.ts";
 
-const users: User[] = [
-  {
-    id: 1,
-    username: "Robin Wieruch",
-  },
-  {
-    id: 2,
-    username: "Dave Davids",
-  },
-];
+import { Service } from "https://deno.land/x/knight@2.3.0/mod.ts";
 
-function getUsers() {
-  return users;
-}
+export default Service(
+  class UserService {
+    private users: User[];
+    constructor() {
+      this.users = [
+        {
+          id: 1,
+          name: "Robin Wieruch",
+        },
+        {
+          id: 2,
+          name: "Dave Davids",
+        },
+      ];
+    }
 
-function addUser(user: User) {
-  users.push(user);
-}
+    public getUsers() {
+      return this.users;
+    }
 
-export { getUsers, addUser };
+    public addUser(user: User) {
+      this.users.push(user);
+    }
+  }
+);
