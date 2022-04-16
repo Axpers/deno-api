@@ -6,7 +6,7 @@
 
 ## Running the app : 
 ```
-deno run -A --unstable src/server.ts
+deno run --allow-net server.ts  
 ```
 
 ## Listen the app :
