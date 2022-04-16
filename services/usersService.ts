@@ -27,7 +27,8 @@ export class UsersService {
     this.users = this.users.filter((e) => e.id !== id);
   }
 
-  addUser(user: User): void {
+  addUser(user: User): User {
     this.users.push(user);
+    return user;
   }
 }

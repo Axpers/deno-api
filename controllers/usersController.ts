@@ -27,6 +27,7 @@ export class UsersController {
         const { value } = ctx.request.body({ type: "json" });
         const user = await value;
         this.usersService.addUser(user);
+        ctx.response.body = user;
       });
   }
 
